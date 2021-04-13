@@ -3,9 +3,12 @@ const fs = require('fs');
 const DomParser = require('dom-parser');
 const parser = new DomParser();
 
+const input = './a.html';
+const output = './b.csv';
+
 const createCsvWriter = require('csv-writer').createArrayCsvWriter;
 const csvWriter = new createCsvWriter({
-    path: './bbb.csv',
+    path: input,
     header: [
         'Nama', 'NIK', 'Alamat',
         'No. Peserta', 'Sesi', 'Waktu',
@@ -13,7 +16,7 @@ const csvWriter = new createCsvWriter({
     ],
 });
 
-fs.readFile('./aaa.html', 'utf8', (err, html) => {
+fs.readFile(output, 'utf8', (err, html) => {
     const dom = parser.parseFromString(html);
     const lists = dom.getElementsByClassName('white-box');
 
